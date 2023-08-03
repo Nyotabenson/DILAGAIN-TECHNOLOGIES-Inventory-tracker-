@@ -115,8 +115,8 @@ a4 = ((inbound['A4 Envelopes'].sum())-(outbound['A4 Envelopes'].sum()))
 ctns = ((inbound['Carton Boxes (Small)'].sum())-(outbound['Carton Boxes (Small)'].sum()))
 ctnm = ((inbound['Carton Boxes (Medium)'].sum())-(outbound['Carton Boxes (Medium)'].sum()))
 ctnl = ((inbound['Carton Boxes (Large)'].sum())-(outbound['Carton Boxes (Large)'].sum()))
-pbs = ((inbound['Plastic Bags (Small)'].sum())-(outbound['Plastic Bags (Small)'].sum()))
 pbm = ((inbound['Plastic Bags (Medium)'].sum())-(outbound['Plastic Bags (Medium)'].sum()))
+pbl = ((inbound['Plastic Bags (Large)'].sum())-(outbound['Plastic Bags (Large)'].sum()))
 
 
 #highlights
@@ -128,8 +128,8 @@ st.markdown(f"(iv)  :green[**A4 Envelopes**] :  {a4}")
 st.markdown(f"(v)  :red[**Cartons Small-size**] :  {ctns}")
 st.markdown(f"(vi)  :red[**Cartons Medium-size**] :  {ctnm}")
 st.markdown(f"(vii)  :red[**Cartons Large-size**] :  {ctnl}")
-st.markdown(f"(viii) :violet[**Plastic Bags Small-size**] :  {pbs}")
-st.markdown(f"(ix) :violet[**Plastic Bags Medium-size**] :  {pbm}")
+st.markdown(f"(viii) :violet[**Plastic Bags Medium-size**] :  {pbm}")
+st.markdown(f"(ix) :violet[**Plastic Bags Large-size**] :  {pbl}")
 
 
 
