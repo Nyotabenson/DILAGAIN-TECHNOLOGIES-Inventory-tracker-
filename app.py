@@ -55,14 +55,14 @@ with st.sidebar.expander('INBOUND'):
         in_CTN_S = st.number_input("Carton Boxes (Small)", min_value=0, step=1, key='in_CTN_S')
         in_CTN_M = st.number_input("Carton Boxes (Medium)", min_value=0, step=1, key='in_CTN_M')
         in_CTN_L = st.number_input("Carton Boxes (Large)", min_value=0, step=1, key='in_CTN_L')
-        in_PB_S = st.number_input("Plastic Bags (Small)", min_value=0, step=1, key='in_PB_S')
         in_PB_M = st.number_input("Plastic Bags (Medium)", min_value=0, step=1, key='in_PB_M')
+        in_PB_L = st.number_input("Plastic Bags (Large)", min_value=0, step=1, key='in_PB_L')
         in_KG50 = st.number_input("50KGS Suck", min_value=0, step=1, key='in_PB_L')
         in_KG90 = st.number_input("90KG Suck", min_value=0, step=1, key='in_KH90')
         submitted1 = st.form_submit_button("Save Data")
         if submitted1:
           in_entry = {'Inbounding Date' : in_date, "G Printers" : in_GP, 'Clear Tapes' : in_CT, "Branded Tapes" : in_BT, "A5 Envelopes" : in_A5, "A4 Envelopes":in_A4, 
-            "Carton Boxes (Small)":in_CTN_S, "Carton Boxes (Medium)":in_CTN_M, "Carton Boxes (Large)":in_CTN_L, "Plastic Bags (Small)":in_PB_S,
+            "Carton Boxes (Small)":in_CTN_S, "Carton Boxes (Medium)":in_CTN_M, "Carton Boxes (Large)":in_CTN_L, "Plastic Bags (Large)":in_PB_L,
              "Plastic Bags (Medium)":in_PB_M, "50KGS Suck":in_KG50, "90KG Suck":in_KG90}
           st.success("Data Saved")
           inbound = pd.concat([inbound, pd.DataFrame(in_entry, index=[0])], ignore_index=True)
@@ -79,14 +79,14 @@ with st.sidebar.expander('OUTBOUND'):
         CTN_S = st.number_input("Carton Boxes (Small)", min_value=0, step=1, key='CTN_S')
         CTN_M = st.number_input("Carton Boxes (Medium)", min_value=0, step=1, key='CTN_M')
         CTN_L = st.number_input("Carton Boxes (Large)", min_value=0, step=1,key='CTN_L')
-        PB_S = st.number_input("Plastic Bags (Small)", min_value=0, step=1, key='PB_S')
         PB_M = st.number_input("Plastic Bags (Medium)", min_value=0, step=1, key='PB_M')
+        PB_L = st.number_input("Plastic Bags (Large)", min_value=0, step=1, key='PB_L')
         KG50 = st.number_input("50KGS Sucks", min_value=0, step=1, key='PB_L')
         KG90 = st.number_input("90KG Suck", min_value=0, step=1, key='KH90')
         submitted2 = st.form_submit_button("Save outbound")
         if submitted2:
            out_entry = {'Date' : DT, "G Printers" : GP, 'Clear Tapes' : CT, "Branded Tapes" : BT, "A5 Envelopes" : A5, "A4 Envelopes":A4, 
-            "Carton Boxes (Small)":CTN_S, "Carton Boxes (Medium)":CTN_M, "Carton Boxes (Large)":CTN_L, "Plastic Bags (Small)":PB_S,
+            "Carton Boxes (Small)":CTN_S, "Carton Boxes (Medium)":CTN_M, "Carton Boxes (Large)":CTN_L, "Plastic Bags (Large)":PB_L,
             "Plastic Bags (Medium)":PB_M, "50KGS Suck":KG50, "90KG Suck":KG90}
            outbound = pd.concat([outbound, pd.DataFrame(out_entry, index=[0])], ignore_index=True)
            outbound.to_csv("outbound.csv", index=False)
