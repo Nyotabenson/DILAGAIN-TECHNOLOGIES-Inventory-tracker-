@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd 
 import numpy as np 
 import datetime
-
+import io
 
 
 def local_css(file_name):
@@ -130,3 +130,48 @@ st.markdown(f"(vi)  :red[**Cartons Medium-size**] :  {ctnm}")
 st.markdown(f"(vii)  :red[**Cartons Large-size**] :  {ctnl}")
 st.markdown(f"(viii) :violet[**Plastic Bags Small-size**] :  {pbs}")
 st.markdown(f"(ix) :violet[**Plastic Bags Medium-size**] :  {pbm}")
+
+
+
+#preparation for dataset download
+#inbound
+csv_buffer_in = io.StringIO()
+inbound.to_csv(csv_buffer_in, index=False)
+csv_data_in = csv_buffer_in.getvalue()
+#outbound
+csv_buffer_out = io.StringIO()
+outbound.to_csv(csv_buffer_out, index=False)
+csv_data_out = csv_buffer_out.getvalue()
+
+
+st.write("##")
+# download option
+# inbound dataset
+st.text("To Download the Inbound Dataset")
+download = st.checkbox("Download", key="download2")   
+if download:
+    st.text('key-in the passcode')
+    passcode = st.text_input("Passcode1")
+    if passcode == '114986bn':
+        st.download_button(
+             label="Download CSV",
+           data=csv_data_in,
+               file_name="inbound_data.csv",
+                 mime="text/csv"
+                )
+        
+# outbound dataset
+st.text("To Download the Outbound Dataset")
+download = st.checkbox("Download", key="download1")   
+if download:
+    st.text('key-in the passcode2')
+    passcode = st.text_input("Passcode")
+    if passcode == '114986bn':
+        st.download_button(
+             label="Download CSV",
+           data=csv_data_out,
+               file_name="outbound_data.csv",
+                 mime="text/csv"
+                )        
+
+           
