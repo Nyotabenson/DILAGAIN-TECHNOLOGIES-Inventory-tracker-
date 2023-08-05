@@ -81,7 +81,7 @@ with st.sidebar.expander('OUTBOUND'):
         CTN_L = st.number_input("Carton Boxes (Large)", min_value=0, step=1,key='CTN_L')
         PB_M = st.number_input("Plastic Bags (Medium)", min_value=0, step=1, key='PB_M')
         PB_L = st.number_input("Plastic Bags (Large)", min_value=0, step=1, key='PB_L')
-        KG50 = st.number_input("50KGS Sucks", min_value=0, step=1, key='KG50')
+        KG50 = st.number_input("50KGS Suck", min_value=0, step=1, key='KG50')
         KG90 = st.number_input("90KG Suck", min_value=0, step=1, key='KG90')
         submitted2 = st.form_submit_button("Save outbound")
         if submitted2:
