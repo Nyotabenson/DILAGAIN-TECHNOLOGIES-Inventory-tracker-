@@ -58,12 +58,11 @@ with st.sidebar.expander('INBOUND'):
         in_PB_M = st.number_input("Plastic Bags (Medium)", min_value=0, step=1, key='in_PB_M')
         in_PB_L = st.number_input("Plastic Bags (Large)", min_value=0, step=1, key='in_PB_L')
         in_KG50 = st.number_input("50KGS Suck", min_value=0, step=1, key='in_KG50')
-        in_KG90 = st.number_input("90KG Suck", min_value=0, step=1, key='in_KG90')
         submitted1 = st.form_submit_button("Save Data")
         if submitted1:
           in_entry = {'Inbounding Date' : in_date, "G Printers" : in_GP, 'Clear Tapes' : in_CT, "Branded Tapes" : in_BT, "A5 Envelopes" : in_A5, "A4 Envelopes":in_A4, 
             "Carton Boxes (Small)":in_CTN_S, "Carton Boxes (Medium)":in_CTN_M, "Carton Boxes (Large)":in_CTN_L, "Plastic Bags (Large)":in_PB_L,
-             "Plastic Bags (Medium)":in_PB_M, "50KGS Suck":in_KG50, "90KG Suck":in_KG90}
+             "Plastic Bags (Medium)":in_PB_M, "50KGS Suck":in_KG50}
           st.success("Data Saved")
           inbound = pd.concat([inbound, pd.DataFrame(in_entry, index=[0])], ignore_index=True)
           inbound.to_csv("inbound.csv", index=False)
@@ -82,12 +81,11 @@ with st.sidebar.expander('OUTBOUND'):
         PB_M = st.number_input("Plastic Bags (Medium)", min_value=0, step=1, key='PB_M')
         PB_L = st.number_input("Plastic Bags (Large)", min_value=0, step=1, key='PB_L')
         KG50 = st.number_input("50KGS Suck", min_value=0, step=1, key='KG50')
-        KG90 = st.number_input("90KG Suck", min_value=0, step=1, key='KG90')
         submitted2 = st.form_submit_button("Save outbound")
         if submitted2:
            out_entry = {'Date' : DT, "G Printers" : GP, 'Clear Tapes' : CT, "Branded Tapes" : BT, "A5 Envelopes" : A5, "A4 Envelopes":A4, 
             "Carton Boxes (Small)":CTN_S, "Carton Boxes (Medium)":CTN_M, "Carton Boxes (Large)":CTN_L, "Plastic Bags (Large)":PB_L,
-            "Plastic Bags (Medium)":PB_M, "50KGS Suck":KG50, "90KG Suck":KG90}
+            "Plastic Bags (Medium)":PB_M, "50KGS Suck":KG50}
            outbound = pd.concat([outbound, pd.DataFrame(out_entry, index=[0])], ignore_index=True)
            outbound.to_csv("outbound.csv", index=False)
            st.success("Outbound Saved")
@@ -97,7 +95,7 @@ st.write('##')
 
 #outbound display
 st.write("outbound data")
-st.write(outbound)  
+st.write(outbound.tail(6))  
 
 st.write('##')
 
@@ -120,7 +118,7 @@ pbl = ((inbound['Plastic Bags (Large)'].sum())-(outbound['Plastic Bags (Large)']
 
 
 #highlights
-st.subheader("Summary:-")
+st.subheader("Available Materials:-")
 st.markdown(f"(i)  :blue[**Clear Tapes**] :  {tapes}")
 st.markdown(f"(ii)  :blue[**Branded Tapes**] :  {btapes}")
 st.markdown(f"(iii)  :green[**A5 Envelopes**] :  {a5}")
