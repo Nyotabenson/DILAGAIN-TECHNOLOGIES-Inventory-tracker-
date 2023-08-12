@@ -115,10 +115,13 @@ ctnm = ((inbound['Carton Boxes (Medium)'].sum())-(outbound['Carton Boxes (Medium
 ctnl = ((inbound['Carton Boxes (Large)'].sum())-(outbound['Carton Boxes (Large)'].sum()))
 pbm = ((inbound['Plastic Bags (Medium)'].sum())-(outbound['Plastic Bags (Medium)'].sum()))
 pbl = ((inbound['Plastic Bags (Large)'].sum())-(outbound['Plastic Bags (Large)'].sum()))
+gp = ((inbound['G Printers'].sum())-(outbound['G Printers'].sum()))
+s50 = ((inbound['50KGS Suck'].sum())-(outbound['50KGS Suck'].sum()))
 
 
 #highlights
 st.subheader("Available Materials:-")
+st.markdown(f"(i)  :blue[**G Printers**] :  {gp}")
 st.markdown(f"(i)  :blue[**Clear Tapes**] :  {tapes}")
 st.markdown(f"(ii)  :blue[**Branded Tapes**] :  {btapes}")
 st.markdown(f"(iii)  :green[**A5 Envelopes**] :  {a5}")
@@ -128,7 +131,7 @@ st.markdown(f"(vi)  :red[**Cartons Medium-size**] :  {ctnm}")
 st.markdown(f"(vii)  :red[**Cartons Large-size**] :  {ctnl}")
 st.markdown(f"(viii) :violet[**Plastic Bags Medium-size**] :  {pbm}")
 st.markdown(f"(ix) :violet[**Plastic Bags Large-size**] :  {pbl}")
-
+st.markdown(f"(i)  :violet[**50KGS Sucks**] :  {s50}")
 
 
 #preparation for dataset download
