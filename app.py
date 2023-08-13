@@ -160,19 +160,49 @@ if download:
                file_name="inbound_data.csv",
                  mime="text/csv"
                 )
-        
+    elif passcode != '114986bn':    
+        st.markdown(":red[**Input Valid Passcode**]")    
+
+
 # outbound dataset
 st.text("To Download the Outbound Dataset")
 download = st.checkbox("Download", key="download1")   
 if download:
     st.text('key-in the passcode2')
-    passcode = st.text_input("Passcode")
-    if passcode == '114986bn':
+    passcode2 = st.text_input("Passcode")
+    if passcode2 == '114986bn':
         st.download_button(
              label="Download CSV",
            data=csv_data_out,
                file_name="outbound_data.csv",
                  mime="text/csv"
                 )        
+    elif passcode2 != '114986bn':
+        st.markdown(":red[**Input Valid Passcode**]")    
 
-           
+
+
+# Monetary Calculation
+m_tapes = ((outbound['Clear Tapes'].sum())*99)
+m_btapes = ((outbound['Branded Tapes'].sum())*220)
+m_a5 = ((outbound['A5 Envelopes'].sum())*4)
+m_a4 = ((outbound['A4 Envelopes'].sum())*3)
+m_ctns = ((outbound['Carton Boxes (Small)'].sum())*20)
+m_ctnm = ((outbound['Carton Boxes (Medium)'].sum())*45)
+m_ctnl = ((outbound['Carton Boxes (Large)'].sum())*72)
+m_pbm = ((outbound['Plastic Bags (Medium)'].sum())*13)
+m_pbl = ((outbound['Plastic Bags (Large)'].sum())*21)
+m_s50 = ((outbound['50KGS Suck'].sum())*25)
+
+
+
+#Total sales button
+st.text('Total Sales')
+total_sales = st.checkbox("Show", key="total_sales")   
+if total_sales:
+    passcode3 = st.text_input("Passcode3")
+    if passcode3 == '114986bn':
+       total_sales = (m_tapes+m_btapes+m_a4+m_a5+m_ctns+m_ctnm+m_ctnl+m_pbm+m_pbl+m_s50)
+       st.write(total_sales)
+    elif passcode3 != '114986bn':
+        st.markdown(":red[**Input Valid Passcode**]")    
