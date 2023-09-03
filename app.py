@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd 
 import numpy as np 
 import datetime
+from datetime import date
 import io
 
 
@@ -24,9 +25,9 @@ st.markdown("""
 
 
 st.title("DILAGAIN TECHNOLOGIES")
-st.write("""<p class="title"> As from 3rd August 2023</p>""", unsafe_allow_html=True)
+#st.write("""<p class="title"> As from 3rd August 2023</p>""", unsafe_allow_html=True)
 st.header("Packaging Materials Inventory")
-
+#st.write(date.today())
 st.write("##")
 
 
