@@ -186,10 +186,10 @@ if download:
 # Monetary Calculation
 m_tapes = ((outbound['Clear Tapes'].sum())*99)
 m_btapes = ((outbound['Branded Tapes'].sum())*220)
-m_a5 = ((outbound['A5 Envelopes'].sum())*4)
-m_a4 = ((outbound['A4 Envelopes'].sum())*3)
+m_a5 = ((outbound['A5 Envelopes'].sum())*3)
+m_a4 = ((outbound['A4 Envelopes'].sum())*4)
 m_ctns = ((outbound['Carton Boxes (Small)'].sum())*20)
-m_ctnm = ((outbound['Carton Boxes (Medium)'].sum())*45)
+m_ctnm = ((outbound['Carton Boxes (Medium)'].sum())*40)
 m_ctnl = ((outbound['Carton Boxes (Large)'].sum())*72)
 m_pbm = ((outbound['Plastic Bags (Medium)'].sum())*13)
 m_pbl = ((outbound['Plastic Bags (Large)'].sum())*21)
