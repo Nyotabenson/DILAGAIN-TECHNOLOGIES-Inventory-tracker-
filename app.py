@@ -135,6 +135,68 @@ st.markdown(f"(ix) :violet[**Plastic Bags Large-size**] :  {pbl}")
 st.markdown(f"(i)  :violet[**50KGS Sucks**] :  {s50}")
 
 
+st.subheader("Packaging Material Pattern")
+import matplotlib.pyplot as plt
+import pandas as pd
+
+cols_maps = {'Date':'date', 'G Printers':'g_printers', 'Clear Tapes':'clear_tapes', 'Branded Tapes':'branded_tapes', 'A5 Envelopes':'A5_envelopes',
+       'A4 Envelopes':'A4_envelopes', 'Carton Boxes (Small)':'carton_boxes_(small)', 'Carton Boxes (Medium)':'carton_boxes_(medium)',
+       'Carton Boxes (Large)':'carton_boxes_(large)', 'Plastic Bags (Medium)':'Plastic_Bags_Medium', 'Plastic Bags (Large)':'Plastic_Bags_(large)',
+       '50KGS Suck':'50KGS_Suck'}
+voutbound = outbound.rename(columns=cols_maps)
+# Assuming you have a DataFrame named 'outbound' with the desired columns
+
+# Create a figure and axis
+fig, ax = plt.subplots(figsize=(15, 7))
+
+# Define the width of each bar
+bar_width = 0.15  # Adjust the bar width as needed
+
+# Create x-values for the bars for the first set of data
+x1 = range(len(voutbound.date))
+
+# Create x-values for each set of bars
+x2_A5 = [x + bar_width for x in x1]
+x2_A4 = [x + 2 * bar_width for x in x1]
+x2_Clear_Tapes = [x + 3 * bar_width for x in x1]
+x2_Plastic_Bags = [x + 4 * bar_width for x in x1]
+x2_50KGS_Suck = [x + 5 * bar_width for x in x1]
+x2_Carton_Boxes_Medium = [x + 6 * bar_width for x in x1]
+
+# Plot the first set of bars
+ax.bar(x1, voutbound.A5_envelopes, width=bar_width, label='A5 Envelopes')
+
+# Plot the second set of bars
+ax.bar(x2_A4, voutbound.A4_envelopes, width=bar_width, label='A4 Envelopes')
+
+# Plot the third set of bars
+ax.bar(x2_Clear_Tapes, voutbound.clear_tapes, width=bar_width, label='Clear Tapes')
+
+# Plot the fourth set of bars
+ax.bar(x2_Plastic_Bags, voutbound.Plastic_Bags_Medium, width=bar_width, label='Plastic Bags Medium')
+
+# Plot the fifth set of bars
+ax.bar(x2_50KGS_Suck, voutbound['50KGS_Suck'], width=bar_width, label='50KGS Suck')
+
+# Plot the sixth set of bars
+ax.bar(x2_Carton_Boxes_Medium, voutbound['carton_boxes_(medium)'], width=bar_width, label='Carton Boxes Medium')
+
+# Set the x-axis labels to be the dates
+ax.set_xticks([x + 3 * bar_width for x in x1])
+ax.set_xticklabels(voutbound.date, rotation=45, ha='right')
+
+# Add a legend
+ax.legend()
+
+# Set labels and title
+ax.set_xlabel('Date')
+ax.set_ylabel('Quantity')
+ax.set_title('Multiple Products Over Time')
+plt.grid()
+# Show the plot
+st.pyplot(fig)
+
+
 #preparation for dataset download
 #inbound
 csv_buffer_in = io.StringIO()
