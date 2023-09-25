@@ -1,2 +1,3 @@
 # INVENTORY APPLICATION
 THIS IS AN APPLICATION DESIGNED FOR DILAGAIN TECHNOLOGIES
+All required accounts are incorporated in the platform.
