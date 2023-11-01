@@ -266,6 +266,6 @@ if total_sales:
     passcode3 = st.text_input("Passcode3")
     if passcode3 == '114986bn':
        total_sales = (m_tapes+m_btapes+m_a4+m_a5+m_ctns+m_ctnm+m_ctnl+m_pbm+m_pbl+m_s50)
-       st.write(total_sales-29711)
+       st.write(total_sales-2640)
     elif passcode3 != '114986bn':
         st.markdown(":red[**Input Valid Passcode**]")    
