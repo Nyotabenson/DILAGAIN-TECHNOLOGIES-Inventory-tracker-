@@ -4,7 +4,10 @@ import numpy as np
 import datetime
 from datetime import date
 import io
+import matplotlib.pyplot as plt
+import plotly.express as px
 
+st.set_page_config(layout="wide")
 
 def local_css(file_name):
     with open(file_name) as f:
@@ -120,22 +123,91 @@ gp = ((inbound['G Printers'].sum())-(outbound['G Printers'].sum()))
 s50 = ((inbound['50KGS Suck'].sum())-(outbound['50KGS Suck'].sum()))
 
 
-#highlights
-st.subheader("Available Materials:-")
-st.markdown(f"(i)  :blue[**G Printers**] :  {gp}")
-st.markdown(f"(i)  :blue[**Clear Tapes**] :  {tapes}")
-st.markdown(f"(ii)  :blue[**Branded Tapes**] :  {btapes}")
-st.markdown(f"(iii)  :green[**A5 Envelopes**] :  {a5}")
-st.markdown(f"(iv)  :green[**A4 Envelopes**] :  {a4}")
-st.markdown(f"(v)  :red[**Cartons Small-size**] :  {ctns}")
-st.markdown(f"(vi)  :red[**Cartons Medium-size**] :  {ctnm}")
-st.markdown(f"(vii)  :red[**Cartons Large-size**] :  {ctnl}")
-st.markdown(f"(viii) :violet[**Plastic Bags Medium-size**] :  {pbm}")
-st.markdown(f"(ix) :violet[**Plastic Bags Large-size**] :  {pbl}")
-st.markdown(f"(i)  :violet[**50KGS Sucks**] :  {s50}")
+#import datasets
+nov_out = pd.read_csv("November_outbound.csv")
+col1, col2 = st.columns(2)
+with col1:
+    
+    #highlights
+    st.subheader("Available Materials:-")
+    st.markdown(f"(i)  :blue[**G Printers**] :  {gp}")
+    st.markdown(f"(i)  :blue[**Clear Tapes**] :  {tapes}")
+    st.markdown(f"(ii)  :blue[**Branded Tapes**] :  {btapes}")
+    st.markdown(f"(iii)  :green[**A5 Envelopes**] :  {a5}")
+    st.markdown(f"(iv)  :green[**A4 Envelopes**] :  {a4}")
+    st.markdown(f"(v)  :red[**Cartons Small-size**] :  {ctns}")
+    st.markdown(f"(vi)  :red[**Cartons Medium-size**] :  {ctnm}")
+    st.markdown(f"(vii)  :red[**Cartons Large-size**] :  {ctnl}")
+    st.markdown(f"(viii) :violet[**Plastic Bags Medium-size**] :  {pbm}")
+    st.markdown(f"(ix) :violet[**Plastic Bags Large-size**] :  {pbl}")
+    st.markdown(f"(i)  :violet[**50KGS Sucks**] :  {s50}")
+
+with col2:
+
+    pie_out = outbound.drop('Date', axis=1)
+    pie_out1 = pie_out.sum().reset_index(name='total')
+    #plotting the pie chart for materials used.
+   
+
+    fig = px.pie(pie_out1, values='total', names='index', title='Materials used')
+
+    st.plotly_chart(fig)
 
 
-st.subheader("Packaging Material Pattern")
+
+st.subheader("Material consumption for previous months")
+st.write('---')
+
+
+col1, col2 = st.columns(2)
+with col1:
+    st.write("Last Month**2")
+    oct_out = pd.read_csv("october_outbound.csv")
+    plt.figure(figsize=(12,5))
+
+
+    plt.plot(oct_out['Date'], oct_out['Clear Tapes'], color='red', linestyle='-', marker='o', label='Clear tapes')
+    plt.plot(oct_out['Date'], oct_out['A5 Envelopes'], color='blue', linestyle='-.', marker='s', label='A5 Envelopes')
+    plt.plot(oct_out['Date'], oct_out['A4 Envelopes'], color='green', linestyle='-', marker='o', label='A4 Envelopes')
+    plt.plot(oct_out['Date'], oct_out['Plastic Bags (Large)'], color='violet', linestyle='-', marker='o', label='Plastic Bags (Large)')
+    plt.plot(oct_out['Date'], oct_out['Carton Boxes (Small)'], color='maroon', linestyle='-', marker='o', label='Carton Boxes (Small)')
+    plt.plot(oct_out['Date'], oct_out['Carton Boxes (Large)'], color='black', linestyle='-', marker='o', label='Carton Boxes (Large)')
+
+    plt.rcParams['figure.facecolor'] = 'lightblue'
+    plt.grid()
+    plt.xticks(rotation=90)
+    plt.legend()
+
+    st.pyplot(plt)
+
+
+with col2:
+
+    st.write("Last Month")
+    nov_out = pd.read_csv("November_outbound.csv")
+    plt.figure(figsize=(12,5))
+
+
+    plt.plot(nov_out['Date'], nov_out['Clear Tapes'], color='red', linestyle='-', marker='o', label='Clear tapes')
+    plt.plot(nov_out['Date'], nov_out['A5 Envelopes'], color='blue', linestyle='-.', marker='s', label='A5 Envelopes')
+    plt.plot(nov_out['Date'], nov_out['A4 Envelopes'], color='green', linestyle='-', marker='o', label='A4 Envelopes')
+    plt.plot(nov_out['Date'], nov_out['Plastic Bags (Large)'], color='violet', linestyle='-', marker='o', label='Plastic Bags (Large)')
+    plt.plot(nov_out['Date'], nov_out['Carton Boxes (Small)'], color='maroon', linestyle='-', marker='o', label='Carton Boxes (Small)')
+    plt.plot(nov_out['Date'], nov_out['Carton Boxes (Large)'], color='black', linestyle='-', marker='o', label='Carton Boxes (Large)')
+
+
+
+
+    plt.grid()
+    plt.xticks(rotation=90)
+    plt.legend()
+
+    st.pyplot(plt)
+
+st.write('##')
+
+st.subheader("Current Month Packaging material Usage")
+st.write('##')
 import matplotlib.pyplot as plt
 import pandas as pd
 
@@ -187,7 +259,7 @@ ax.set_xticklabels(voutbound.date, rotation=45, ha='right')
 
 # Add a legend
 ax.legend()
-
+ax.set_facecolor('black')
 # Set labels and title
 ax.set_xlabel('Date')
 ax.set_ylabel('Quantity')
