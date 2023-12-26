@@ -61,12 +61,12 @@ with st.sidebar.expander('INBOUND'):
         in_CTN_M = st.number_input("Carton Boxes (Medium)", min_value=0, step=1, key='in_CTN_M')
         in_CTN_L = st.number_input("Carton Boxes (Large)", min_value=0, step=1, key='in_CTN_L')
         in_PB_M = st.number_input("Plastic Bags (Medium)", min_value=0, step=1, key='in_PB_M')
-        in_PB_L = st.number_input("Plastic Bags (Large)", min_value=0, step=1, key='in_PB_L')
+        in_KG90 = st.number_input("90KGS Suck", min_value=0, step=1, key='in_KG90')
         in_KG50 = st.number_input("50KGS Suck", min_value=0, step=1, key='in_KG50')
         submitted1 = st.form_submit_button("Save Data")
         if submitted1:
           in_entry = {'Inbounding Date' : in_date, "G Printers" : in_GP, 'Clear Tapes' : in_CT, "Branded Tapes" : in_BT, "A5 Envelopes" : in_A5, "A4 Envelopes":in_A4, 
-            "Carton Boxes (Small)":in_CTN_S, "Carton Boxes (Medium)":in_CTN_M, "Carton Boxes (Large)":in_CTN_L, "Plastic Bags (Large)":in_PB_L,
+            "Carton Boxes (Small)":in_CTN_S, "Carton Boxes (Medium)":in_CTN_M, "Carton Boxes (Large)":in_CTN_L, "90KGS Suck":in_KG90,
              "Plastic Bags (Medium)":in_PB_M, "50KGS Suck":in_KG50}
           st.success("Data Saved")
           inbound = pd.concat([inbound, pd.DataFrame(in_entry, index=[0])], ignore_index=True)
@@ -84,12 +84,12 @@ with st.sidebar.expander('OUTBOUND'):
         CTN_M = st.number_input("Carton Boxes (Medium)", min_value=0, step=1, key='CTN_M')
         CTN_L = st.number_input("Carton Boxes (Large)", min_value=0, step=1,key='CTN_L')
         PB_M = st.number_input("Plastic Bags (Medium)", min_value=0, step=1, key='PB_M')
-        PB_L = st.number_input("Plastic Bags (Large)", min_value=0, step=1, key='PB_L')
+        PB_L = st.number_input("90KGS Suck", min_value=0, step=1, key='PB_L')
         KG50 = st.number_input("50KGS Suck", min_value=0, step=1, key='KG50')
         submitted2 = st.form_submit_button("Save outbound")
         if submitted2:
            out_entry = {'Date' : DT, "G Printers" : GP, 'Clear Tapes' : CT, "Branded Tapes" : BT, "A5 Envelopes" : A5, "A4 Envelopes":A4, 
-            "Carton Boxes (Small)":CTN_S, "Carton Boxes (Medium)":CTN_M, "Carton Boxes (Large)":CTN_L, "Plastic Bags (Large)":PB_L,
+            "Carton Boxes (Small)":CTN_S, "Carton Boxes (Medium)":CTN_M, "Carton Boxes (Large)":CTN_L, "90KGS Suck":PB_L,
             "Plastic Bags (Medium)":PB_M, "50KGS Suck":KG50}
            outbound = pd.concat([outbound, pd.DataFrame(out_entry, index=[0])], ignore_index=True)
            outbound.to_csv("outbound.csv", index=False)
@@ -119,7 +119,7 @@ ctns = ((inbound['Carton Boxes (Small)'].sum())-(outbound['Carton Boxes (Small)'
 ctnm = ((inbound['Carton Boxes (Medium)'].sum())-(outbound['Carton Boxes (Medium)'].sum()))
 ctnl = ((inbound['Carton Boxes (Large)'].sum())-(outbound['Carton Boxes (Large)'].sum()))
 pbm = ((inbound['Plastic Bags (Medium)'].sum())-(outbound['Plastic Bags (Medium)'].sum()))
-pbl = ((inbound['Plastic Bags (Large)'].sum())-(outbound['Plastic Bags (Large)'].sum()))
+pbl = ((inbound['90KGS Suck'].sum())-(outbound['90KGS Suck'].sum()))
 gp = ((inbound['G Printers'].sum())-(outbound['G Printers'].sum()))
 s50 = ((inbound['50KGS Suck'].sum())-(outbound['50KGS Suck'].sum()))
 
@@ -214,7 +214,7 @@ import pandas as pd
 
 cols_maps = {'Date':'date', 'G Printers':'g_printers', 'Clear Tapes':'clear_tapes', 'Branded Tapes':'branded_tapes', 'A5 Envelopes':'A5_envelopes',
        'A4 Envelopes':'A4_envelopes', 'Carton Boxes (Small)':'carton_boxes_(small)', 'Carton Boxes (Medium)':'carton_boxes_(medium)',
-       'Carton Boxes (Large)':'carton_boxes_(large)', 'Plastic Bags (Medium)':'Plastic_Bags_Medium', 'Plastic Bags (Large)':'Plastic_Bags_(large)',
+       'Carton Boxes (Large)':'carton_boxes_(large)', 'Plastic Bags (Medium)':'Plastic_Bags_Medium', '90KGS Suck':'Plastic_Bags_(large)',
        '50KGS Suck':'50KGS_Suck'}
 voutbound = outbound.rename(columns=cols_maps)
 # Assuming you have a DataFrame named 'outbound' with the desired columns
@@ -327,7 +327,7 @@ m_ctns = ((outbound['Carton Boxes (Small)'].sum())*20)
 m_ctnm = ((outbound['Carton Boxes (Medium)'].sum())*40)
 m_ctnl = ((outbound['Carton Boxes (Large)'].sum())*72)
 m_pbm = ((outbound['Plastic Bags (Medium)'].sum())*13)
-m_pbl = ((outbound['Plastic Bags (Large)'].sum())*21)
+m_pbl = ((outbound['90KGS Suck'].sum())*21)
 m_s50 = ((outbound['50KGS Suck'].sum())*25)
 
 
