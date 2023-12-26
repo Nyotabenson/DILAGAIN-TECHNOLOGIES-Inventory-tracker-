@@ -140,7 +140,7 @@ with col1:
     st.markdown(f"(vi)  :red[**Cartons Medium-size**] :  {ctnm}")
     st.markdown(f"(vii)  :red[**Cartons Large-size**] :  {ctnl}")
     st.markdown(f"(viii) :violet[**Plastic Bags Medium-size**] :  {pbm}")
-    st.markdown(f"(ix) :violet[**Plastic Bags Large-size**] :  {pbl}")
+    st.markdown(f"(ix) :violet[**90KGS Sucks**] :  {pbl}")
     st.markdown(f"(i)  :violet[**50KGS Sucks**] :  {s50}")
 
 with col2:
