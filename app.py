@@ -86,11 +86,12 @@ with st.sidebar.expander('OUTBOUND'):
         PB_M = st.number_input("Plastic Bags (Medium)", min_value=0, step=1, key='PB_M')
         PB_L = st.number_input("90KGS Suck", min_value=0, step=1, key='PB_L')
         KG50 = st.number_input("50KGS Suck", min_value=0, step=1, key='KG50')
+        ODRS = st.number_input("Orders", min_value=0, step=1, key='odrs')
         submitted2 = st.form_submit_button("Save outbound")
         if submitted2:
            out_entry = {'Date' : DT, "G Printers" : GP, 'Clear Tapes' : CT, "Branded Tapes" : BT, "A5 Envelopes" : A5, "A4 Envelopes":A4, 
             "Carton Boxes (Small)":CTN_S, "Carton Boxes (Medium)":CTN_M, "Carton Boxes (Large)":CTN_L, "90KGS Suck":PB_L,
-            "Plastic Bags (Medium)":PB_M, "50KGS Suck":KG50}
+            "Plastic Bags (Medium)":PB_M, "50KGS Suck":KG50, "Orders":ODRS}
            outbound = pd.concat([outbound, pd.DataFrame(out_entry, index=[0])], ignore_index=True)
            outbound.to_csv("outbound.csv", index=False)
            st.success("Outbound Saved")
@@ -174,7 +175,7 @@ with col1:
     plt.plot(oct_out['Date'], oct_out['Carton Boxes (Small)'], color='maroon', linestyle='-', marker='o', label='Carton Boxes (Small)')
     plt.plot(oct_out['Date'], oct_out['Carton Boxes (Large)'], color='black', linestyle='-', marker='o', label='Carton Boxes (Large)')
 
-    plt.rcParams['figure.facecolor'] = 'lightblue'
+    #plt.rcParams['figure.facecolor'] = 'lightblue'
     plt.grid()
     plt.xticks(rotation=90)
     plt.legend()
@@ -279,7 +280,20 @@ csv_data_in = csv_buffer_in.getvalue()
 csv_buffer_out = io.StringIO()
 outbound.to_csv(csv_buffer_out, index=False)
 csv_data_out = csv_buffer_out.getvalue()
+review = st.checkbox("Review")
+if review:
 
+    try:
+
+        st.subheader("Work done rate")
+        fig1, ax = plt.subplots(figsize=(12,5))
+
+        ax.plot(outbound.Date, outbound.Orders, c="Red")
+        ax.set_facecolor('gray')
+        ax.grid()
+        st.pyplot(fig1)
+    except:
+        print("Working progress, review later")    
 
 st.write("##")
 # download option
