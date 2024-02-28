@@ -290,7 +290,7 @@ if review:
 
         ax.plot(outbound.Date, outbound.Orders, c="Red")
         ax.set_facecolor('gray')
-        ax.get_xticks(rotation=45)
+        ax.set_xticks(rotation=45)
         ax.grid()
         st.pyplot(fig1)
     except:
