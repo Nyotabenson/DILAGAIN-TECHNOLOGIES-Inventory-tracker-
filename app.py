@@ -284,7 +284,10 @@ csv_data_in = csv_buffer_in.getvalue()
 csv_buffer_out = io.StringIO()
 outbound.to_csv(csv_buffer_out, index=False)
 csv_data_out = csv_buffer_out.getvalue()
-review = st.checkbox("Review")
+last_month_orders = st.checkbox("Last Month Orders")
+if last_month_orders:
+    st.image("./Revenue_analysis/previos_month_orders.png")
+review = st.checkbox("Order rate")
 if review:
 
     try:
@@ -358,6 +361,6 @@ if total_sales:
     passcode3 = st.text_input("Passcode3")
     if passcode3 == '114986bn':
        total_sales = (m_tapes+m_btapes+m_a4+m_a5+m_ctns+m_ctnm+m_ctnl+m_pbm+m_pbl+m_s50)
-       st.write(total_sales-8500)
+       st.write(total_sales)
     elif passcode3 != '114986bn':
         st.markdown(":red[**Input Valid Passcode**]")    
