@@ -286,7 +286,12 @@ outbound.to_csv(csv_buffer_out, index=False)
 csv_data_out = csv_buffer_out.getvalue()
 last_month_orders = st.checkbox("Last Month Orders")
 if last_month_orders:
-    st.image("./Revenue_analysis/previos_month_orders.png")
+    try:
+        st.image("./Revenue_analysis/previous_month_orders.png")
+    except:
+        st.text("The Visualiation is unavailable at the moment")
+
+    
 review = st.checkbox("Order rate")
 if review:
 
