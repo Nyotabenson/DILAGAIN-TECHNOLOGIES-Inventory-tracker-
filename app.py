@@ -150,7 +150,7 @@ with col1:
 
 with col2:
 
-    pie_out = outbound.drop('Date', axis=1)
+    pie_out = outbound.drop(columns=['Date','orders'], axis=1)
     pie_out1 = pie_out.sum().reset_index(name='total')
     #plotting the pie chart for materials used.
    
