@@ -43,10 +43,11 @@ st.write("##")
 outbound = pd.read_csv('outbound.csv')
 inbound = pd.read_csv('inbound.csv')
 
+st.write("Recent Entries")
+st.write(outbound.tail(1))
 
 st.image("./Revenue_analysis/analysis.png")
-# st.write("Recent Entries")
-# st.write(outbound.tail(1))
+
 
 #Sidebar
 
