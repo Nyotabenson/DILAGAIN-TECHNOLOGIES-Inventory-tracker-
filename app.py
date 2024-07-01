@@ -288,7 +288,7 @@ csv_data_out = csv_buffer_out.getvalue()
 last_month_orders = st.checkbox("Last Month Orders")
 if last_month_orders:
     try:
-        st.image("./Revenue_analysis/previous_month_orders.png")
+        st.image("./Revenue_analysis/june_orders.png")
     except:
         st.text("The Visualiation is unavailable at the moment")
 
