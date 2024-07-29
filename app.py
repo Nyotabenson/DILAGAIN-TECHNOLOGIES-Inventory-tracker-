@@ -60,17 +60,18 @@ with st.sidebar.expander('INBOUND'):
         in_GP = st.number_input("G Printers", min_value=0,  step=1, key='in_GP')
         in_CT = st.number_input("Clear Tapes", min_value=0, step=1, key='in_CT')
         in_BT = st.number_input("Branded Tapes", min_value=0, step=1, key='in_BT')
-        in_A5 = st.number_input("A5 Envelopes", min_value=0, step=1, key='in_A5')
-        in_A4 = st.number_input("A4 Envelopes", min_value=0, step=1, key='in_A4')
+        #in_A5 = st.number_input("A5 Envelopes", min_value=0, step=1, key='in_A5')
+        in_PB_S = st.number_input("Plastic Bags (Small)", min_value=0, step=1, key='in_PB_S')
         in_CTN_S = st.number_input("Carton Boxes (Small)", min_value=0, step=1, key='in_CTN_S')
         in_CTN_M = st.number_input("Carton Boxes (Medium)", min_value=0, step=1, key='in_CTN_M')
         in_CTN_L = st.number_input("Carton Boxes (Large)", min_value=0, step=1, key='in_CTN_L')
         in_PB_M = st.number_input("Plastic Bags (Medium)", min_value=0, step=1, key='in_PB_M')
         in_KG90 = st.number_input("90KGS Suck", min_value=0, step=1, key='in_KG90')
         in_KG50 = st.number_input("50KGS Suck", min_value=0, step=1, key='in_KG50')
+
         submitted1 = st.form_submit_button("Save Data")
         if submitted1:
-          in_entry = {'Inbounding Date' : in_date, "G Printers" : in_GP, 'Clear Tapes' : in_CT, "Branded Tapes" : in_BT, "A5 Envelopes" : in_A5, "A4 Envelopes":in_A4, 
+          in_entry = {'Inbounding Date' : in_date, "G Printers" : in_GP, 'Clear Tapes' : in_CT, "Branded Tapes" : in_BT, "Plastic Bags (Small)":in_PB_S, 
             "Carton Boxes (Small)":in_CTN_S, "Carton Boxes (Medium)":in_CTN_M, "Carton Boxes (Large)":in_CTN_L, "90KGS Suck":in_KG90,
              "Plastic Bags (Medium)":in_PB_M, "50KGS Suck":in_KG50}
           st.success("Data Saved")
@@ -83,8 +84,8 @@ with st.sidebar.expander('OUTBOUND'):
         GP = st.number_input("G Printers", min_value=0, step=1, key='GP')
         CT = st.number_input("Clear Tapes", min_value=0, step=1, key='CT')
         BT = st.number_input("Branded Tapes", min_value=0, step=1, key='BT')
-        A5 = st.number_input("A5 Envelopes", min_value=0, step=1, key='A5')
-        A4 = st.number_input("A4 Envelopes", min_value=0, step=1, key='A4')
+        #A5 = st.number_input("A5 Envelopes", min_value=0, step=1, key='A5')
+        PB_S = st.number_input("Plastic Bags (Small)", min_value=0, step=1, key='PB_S')
         CTN_S = st.number_input("Carton Boxes (Small)", min_value=0, step=1, key='CTN_S')
         CTN_M = st.number_input("Carton Boxes (Medium)", min_value=0, step=1, key='CTN_M')
         CTN_L = st.number_input("Carton Boxes (Large)", min_value=0, step=1,key='CTN_L')
@@ -94,7 +95,7 @@ with st.sidebar.expander('OUTBOUND'):
         ODRS = st.number_input("Orders", min_value=0, step=1, key='odrs')
         submitted2 = st.form_submit_button("Save outbound")
         if submitted2:
-           out_entry = {'Date' : DT, "G Printers" : GP, 'Clear Tapes' : CT, "Branded Tapes" : BT, "A5 Envelopes" : A5, "A4 Envelopes":A4, 
+           out_entry = {'Date' : DT, "G Printers" : GP, 'Clear Tapes' : CT, "Branded Tapes" : BT,"Plastic Bags (Small)":PB_S, 
             "Carton Boxes (Small)":CTN_S, "Carton Boxes (Medium)":CTN_M, "Carton Boxes (Large)":CTN_L, "90KGS Suck":PB_L,
             "Plastic Bags (Medium)":PB_M, "50KGS Suck":KG50, "Orders":ODRS}
            outbound = pd.concat([outbound, pd.DataFrame(out_entry, index=[0])], ignore_index=True)
@@ -119,8 +120,8 @@ if check_inbound:
 #statistical summary
 tapes = ((inbound['Clear Tapes'].sum())-(outbound['Clear Tapes'].sum()))
 btapes = ((inbound['Branded Tapes'].sum())-(outbound['Branded Tapes'].sum()))
-a5 = ((inbound['A5 Envelopes'].sum())-(outbound['A5 Envelopes'].sum()))
-a4 = ((inbound['A4 Envelopes'].sum())-(outbound['A4 Envelopes'].sum()))
+# a5 = ((inbound['A5 Envelopes'].sum())-(outbound['A5 Envelopes'].sum()))
+# a4 = ((inbound['A4 Envelopes'].sum())-(outbound['A4 Envelopes'].sum()))
 ctns = ((inbound['Carton Boxes (Small)'].sum())-(outbound['Carton Boxes (Small)'].sum()))
 ctnm = ((inbound['Carton Boxes (Medium)'].sum())-(outbound['Carton Boxes (Medium)'].sum()))
 ctnl = ((inbound['Carton Boxes (Large)'].sum())-(outbound['Carton Boxes (Large)'].sum()))
@@ -128,6 +129,7 @@ pbm = ((inbound['Plastic Bags (Medium)'].sum())-(outbound['Plastic Bags (Medium)
 pbl = ((inbound['90KGS Suck'].sum())-(outbound['90KGS Suck'].sum()))
 gp = ((inbound['G Printers'].sum())-(outbound['G Printers'].sum()))
 s50 = ((inbound['50KGS Suck'].sum())-(outbound['50KGS Suck'].sum()))
+pbs = ((inbound['Plastic Bags (Small)'].sum())-(outbound['Plastic Bags (Small)'].sum()))
 
 
 #import datasets
@@ -140,14 +142,15 @@ with col1:
     st.markdown(f"(i)  :blue[**G Printers**] :  {gp}")
     st.markdown(f"(i)  :blue[**Clear Tapes**] :  {tapes}")
     st.markdown(f"(ii)  :blue[**Branded Tapes**] :  {btapes}")
-    st.markdown(f"(iii)  :green[**A5 Envelopes**] :  {a5}")
-    st.markdown(f"(iv)  :green[**A4 Envelopes**] :  {a4}")
+    #st.markdown(f"(iii)  :green[**A5 Envelopes**] :  {a5}")
+    #st.markdown(f"(iv)  :green[**A4 Envelopes**] :  {a4}")
     st.markdown(f"(v)  :red[**Cartons Small-size**] :  {ctns}")
     st.markdown(f"(vi)  :red[**Cartons Medium-size**] :  {ctnm}")
     st.markdown(f"(vii)  :red[**Cartons Large-size**] :  {ctnl}")
-    st.markdown(f"(viii) :violet[**Plastic Bags Medium-size**] :  {pbm}")
-    st.markdown(f"(ix) :violet[**90KGS Sucks**] :  {pbl}")
-    st.markdown(f"(i)  :violet[**50KGS Sucks**] :  {s50}")
+    st.markdown(f"(viii) :violet[**Plastic Bags Small-size**] :  {pbs}")
+    st.markdown(f"(ix) :green[**Plastic Bags Medium-size**] :  {pbm}")
+    st.markdown(f"(x) :violet[**90KGS Sucks**] :  {pbl}")
+    st.markdown(f"(xi)  :violet[**50KGS Sucks**] :  {s50}")
 
 with col2:
 
@@ -168,49 +171,56 @@ st.write('---')
 
 col1, col2 = st.columns(2)
 with col1:
+    
     st.write("Last Month**2")
-    oct_out = pd.read_csv("october_outbound.csv")
-    plt.figure(figsize=(12,5))
+    try:
+        oct_out = pd.read_csv("october_outbound.csv")
+        plt.figure(figsize=(12,5))
 
 
-    plt.plot(oct_out['Date'], oct_out['Clear Tapes'], color='red', linestyle='-', marker='o', label='Clear tapes')
-    plt.plot(oct_out['Date'], oct_out['A5 Envelopes'], color='blue', linestyle='-.', marker='s', label='A5 Envelopes')
-    plt.plot(oct_out['Date'], oct_out['A4 Envelopes'], color='green', linestyle='-', marker='o', label='A4 Envelopes')
-    plt.plot(oct_out['Date'], oct_out['Plastic Bags (Large)'], color='violet', linestyle='-', marker='o', label='Plastic Bags (Large)')
-    plt.plot(oct_out['Date'], oct_out['Carton Boxes (Small)'], color='maroon', linestyle='-', marker='o', label='Carton Boxes (Small)')
-    plt.plot(oct_out['Date'], oct_out['Carton Boxes (Large)'], color='black', linestyle='-', marker='o', label='Carton Boxes (Large)')
+        plt.plot(oct_out['Date'], oct_out['Clear Tapes'], color='red', linestyle='-', marker='o', label='Clear tapes')
+        #plt.plot(oct_out['Date'], oct_out['A5 Envelopes'], color='blue', linestyle='-.', marker='s', label='A5 Envelopes')
+        plt.plot(oct_out['Date'], oct_out['Plastic Bags (Small)'], color='green', linestyle='-', marker='o', label='Plastic Bags (Small)')
+        plt.plot(oct_out['Date'], oct_out['Plastic Bags (Large)'], color='violet', linestyle='-', marker='o', label='Plastic Bags (Large)')
+        plt.plot(oct_out['Date'], oct_out['Carton Boxes (Small)'], color='maroon', linestyle='-', marker='o', label='Carton Boxes (Small)')
+        plt.plot(oct_out['Date'], oct_out['Carton Boxes (Large)'], color='black', linestyle='-', marker='o', label='Carton Boxes (Large)')
 
-    #plt.rcParams['figure.facecolor'] = 'lightblue'
-    plt.grid()
-    plt.xticks(rotation=90)
-    plt.legend()
+        #plt.rcParams['figure.facecolor'] = 'lightblue'
+        plt.grid()
+        plt.xticks(rotation=90)
+        plt.legend()
 
-    st.pyplot(plt)
+        st.pyplot(plt)
+    except:
+        st.error("Not Found at the moment!!!")
 
 
 with col2:
 
     st.write("Last Month")
-    nov_out = pd.read_csv("November_outbound.csv")
-    plt.figure(figsize=(12,5))
+    try:
+
+        nov_out = pd.read_csv("November_outbound.csv")
+        plt.figure(figsize=(12,5))
 
 
-    plt.plot(nov_out['Date'], nov_out['Clear Tapes'], color='red', linestyle='-', marker='o', label='Clear tapes')
-    plt.plot(nov_out['Date'], nov_out['A5 Envelopes'], color='blue', linestyle='-.', marker='s', label='A5 Envelopes')
-    plt.plot(nov_out['Date'], nov_out['A4 Envelopes'], color='green', linestyle='-', marker='o', label='A4 Envelopes')
-    plt.plot(nov_out['Date'], nov_out['Plastic Bags (Large)'], color='violet', linestyle='-', marker='o', label='Plastic Bags (Large)')
-    plt.plot(nov_out['Date'], nov_out['Carton Boxes (Small)'], color='maroon', linestyle='-', marker='o', label='Carton Boxes (Small)')
-    plt.plot(nov_out['Date'], nov_out['Carton Boxes (Large)'], color='black', linestyle='-', marker='o', label='Carton Boxes (Large)')
+        plt.plot(nov_out['Date'], nov_out['Clear Tapes'], color='red', linestyle='-', marker='o', label='Clear tapes')
+        #plt.plot(nov_out['Date'], nov_out['A5 Envelopes'], color='blue', linestyle='-.', marker='s', label='A5 Envelopes')
+        plt.plot(nov_out['Date'], nov_out['Plastic Bags (Small)'], color='green', linestyle='-', marker='o', label='Plastic Bags (Small)')
+        plt.plot(nov_out['Date'], nov_out['Plastic Bags (Large)'], color='violet', linestyle='-', marker='o', label='Plastic Bags (Large)')
+        plt.plot(nov_out['Date'], nov_out['Carton Boxes (Small)'], color='maroon', linestyle='-', marker='o', label='Carton Boxes (Small)')
+        plt.plot(nov_out['Date'], nov_out['Carton Boxes (Large)'], color='black', linestyle='-', marker='o', label='Carton Boxes (Large)')
 
 
 
 
-    plt.grid()
-    plt.xticks(rotation=90)
-    plt.legend()
+        plt.grid()
+        plt.xticks(rotation=90)
+        plt.legend()
 
-    st.pyplot(plt)
-
+        st.pyplot(plt)
+    except:
+        st.error("Try Again")
 st.write('##')
 
 st.subheader("Current Month Packaging material Usage")
@@ -218,8 +228,8 @@ st.write('##')
 import matplotlib.pyplot as plt
 import pandas as pd
 
-cols_maps = {'Date':'date', 'G Printers':'g_printers', 'Clear Tapes':'clear_tapes', 'Branded Tapes':'branded_tapes', 'A5 Envelopes':'A5_envelopes',
-       'A4 Envelopes':'A4_envelopes', 'Carton Boxes (Small)':'carton_boxes_(small)', 'Carton Boxes (Medium)':'carton_boxes_(medium)',
+cols_maps = {'Date':'date', 'G Printers':'g_printers', 'Clear Tapes':'clear_tapes', 'Branded Tapes':'branded_tapes', 'Plastic Bags (Small)':'Plastic_Bags_Small',
+        'Carton Boxes (Small)':'carton_boxes_(small)', 'Carton Boxes (Medium)':'carton_boxes_(medium)',
        'Carton Boxes (Large)':'carton_boxes_(large)', 'Plastic Bags (Medium)':'Plastic_Bags_Medium', '90KGS Suck':'Plastic_Bags_(large)',
        '50KGS Suck':'50KGS_Suck'}
 voutbound = outbound.rename(columns=cols_maps)
@@ -235,18 +245,19 @@ bar_width = 0.15  # Adjust the bar width as needed
 x1 = range(len(voutbound.date))
 
 # Create x-values for each set of bars
-x2_A5 = [x + bar_width for x in x1]
-x2_A4 = [x + 2 * bar_width for x in x1]
+# x2_A5 = [x + bar_width for x in x1]
+# x2_A4 = [x + 2 * bar_width for x in x1]
 x2_Clear_Tapes = [x + 3 * bar_width for x in x1]
 x2_Plastic_Bags = [x + 4 * bar_width for x in x1]
-x2_50KGS_Suck = [x + 5 * bar_width for x in x1]
-x2_Carton_Boxes_Medium = [x + 6 * bar_width for x in x1]
+x2_Plastic_Bags_S = [x + 5 * bar_width for x in x1]
+x2_50KGS_Suck = [x + 6 * bar_width for x in x1]
+x2_Carton_Boxes_Medium = [x + 7 * bar_width for x in x1]
 
 # Plot the first set of bars
-ax.bar(x1, voutbound.A5_envelopes, width=bar_width, label='A5 Envelopes')
+ax.bar(x1, voutbound.Plastic_Bags_Small, width=bar_width, label='Plastic Bags (Small)')
 
 # Plot the second set of bars
-ax.bar(x2_A4, voutbound.A4_envelopes, width=bar_width, label='A4 Envelopes')
+#ax.bar(x2_A4, voutbound.A4_envelopes, width=bar_width, label='A4 Envelopes')
 
 # Plot the third set of bars
 ax.bar(x2_Clear_Tapes, voutbound.clear_tapes, width=bar_width, label='Clear Tapes')
@@ -349,8 +360,8 @@ if download:
 # Monetary Calculation
 m_tapes = ((outbound['Clear Tapes'].sum())*99)
 m_btapes = ((outbound['Branded Tapes'].sum())*220)
-m_a5 = ((outbound['A5 Envelopes'].sum())*3)
-m_a4 = ((outbound['A4 Envelopes'].sum())*4)
+#m_a5 = ((outbound['A5 Envelopes'].sum())*3)
+#m_a4 = ((outbound['A4 Envelopes'].sum())*4)
 m_ctns = ((outbound['Carton Boxes (Small)'].sum())*20)
 m_ctnm = ((outbound['Carton Boxes (Medium)'].sum())*40)
 m_ctnl = ((outbound['Carton Boxes (Large)'].sum())*72)
@@ -367,6 +378,6 @@ if total_sales:
     passcode3 = st.text_input("Passcode3")
     if passcode3 == '114986bn':
        total_sales = (m_tapes+m_btapes+m_a4+m_a5+m_ctns+m_ctnm+m_ctnl+m_pbm+m_pbl+m_s50)
-       st.write(total_sales+64410)
+       st.write(total_sales+65710)
     elif passcode3 != '114986bn':
         st.markdown(":red[**Input Valid Passcode**]")    
