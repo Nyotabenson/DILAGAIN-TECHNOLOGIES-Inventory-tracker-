@@ -368,6 +368,7 @@ m_ctnl = ((outbound['Carton Boxes (Large)'].sum())*72)
 m_pbm = ((outbound['Plastic Bags (Medium)'].sum())*13)
 m_pbl = ((outbound['90KGS Suck'].sum())*21)
 m_s50 = ((outbound['50KGS Suck'].sum())*25)
+m_pbs = ((outbound['Plastic Bags (Small)'].sum())*6)
 
 
 
@@ -377,7 +378,7 @@ total_sales = st.checkbox("Show", key="total_sales")
 if total_sales:
     passcode3 = st.text_input("Passcode3")
     if passcode3 == '114986bn':
-       total_sales = (m_tapes+m_btapes+m_a4+m_a5+m_ctns+m_ctnm+m_ctnl+m_pbm+m_pbl+m_s50)
+       total_sales = (m_tapes+m_btapes+m_ctns+m_ctnm+m_ctnl+m_pbm+m_pbs+m_pbl+m_s50)
        st.write(total_sales+65710)
     elif passcode3 != '114986bn':
         st.markdown(":red[**Input Valid Passcode**]")    
