@@ -324,7 +324,7 @@ if review:
             plot_bgcolor='lightblue'  # Set background color
         )
 
-        fig.show()
+        st.plotly_chart(fig)
 
     except:
         print("Working progress, review later")    
