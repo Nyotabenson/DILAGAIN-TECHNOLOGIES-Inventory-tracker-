@@ -310,13 +310,22 @@ if review:
     try:
 
         st.subheader("Work done rate")
-        fig1, ax = plt.subplots(figsize=(12,5))
 
-        ax.plot(outbound.Date, outbound.Orders, c="Red")
-        ax.set_facecolor('gray')
-        ax.set_xticklabels(ax.get_xticklabels(), rotation=90)
-        ax.grid()
-        st.pyplot(fig1)
+        # Assuming 'outbound' is your DataFrame
+        fig = px.line(outbound, x='Date', y='Orders', 
+                    title='Orders Over Time',
+                    labels={'Orders': 'Number of Orders'},
+                    log_y=True)  # Set y-axis to logarithmic scale
+
+        # Customize the appearance
+        fig.update_traces(line=dict(color='black', shape='spline'))  # Smooth line and set color
+        fig.update_layout(
+            xaxis=dict(tickangle=90),  # Rotate x-axis labels
+            plot_bgcolor='lightblue'  # Set background color
+        )
+
+        fig.show()
+
     except:
         print("Working progress, review later")    
 
