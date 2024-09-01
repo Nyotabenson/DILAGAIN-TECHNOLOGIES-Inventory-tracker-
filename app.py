@@ -29,10 +29,10 @@ st.markdown("""
 
 
 
-st.image("headline.jpg")
+st.image("DILAGAIN TECHNOLOGIES.png")
 #st.title("DILAGAIN TECHNOLOGIES")
 #st.write("""<p class="title"> As from 3rd August 2023</p>""", unsafe_allow_html=True)
-st.header("Packaging Materials Inventory")
+#st.header("Packaging Materials Inventory")
 #st.write(date.today())
 st.write("##")
 
@@ -388,6 +388,6 @@ if total_sales:
     passcode3 = st.text_input("Passcode3")
     if passcode3 == '114986bn':
        total_sales = (m_tapes+m_btapes+m_ctns+m_ctnm+m_ctnl+m_pbm+m_pbs+m_pbl+m_s50)
-       st.write(total_sales-30000)
+       st.write(total_sales)
     elif passcode3 != '114986bn':
         st.markdown(":red[**Input Valid Passcode**]")    
